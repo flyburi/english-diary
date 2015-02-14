@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="2650527170">
+    <data-source source="LOCAL" name="HSQLDB -" uuid="c8218b00-bc29-486b-a5fe-74a37e6885bf">
+      <driver-ref>hsqldb.embedded</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.hsqldb.jdbc.JDBCDriver</jdbc-driver>
+      <jdbc-url>jdbc:hsqldb:file:/</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
+

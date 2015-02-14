@@ -1,0 +1,61 @@
+<div class="container" ng-controller="WordController">
+    <div class="page-header">
+      <h1>단어장</h1>
+    </div>
+
+    <form class="form-horizontal" role="form" ng-submit="addWord(en,ko)">
+      <div class="panel panel-info">
+        <div class="panel-heading">등록</div>
+        <div class="panel-body">
+          <div class="input-group">
+            <div class="col-xs-4">
+              <input type="text" class="form-control" ng-model="en" placeholder="Enter the English word..." />
+            </div>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" ng-model="ko" placeholder="Enter the Korean word..." />
+            </div>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" ng-disabled="!addWord" title="Add">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="panel panel-default">
+        <div class="panel-heading">리스트</div>
+        <div class="alert" role="alert" ng-hide="words &amp;&amp; words.length > 0">
+          There are no words yet.
+        </div>
+        <div class="panel-body" ng-show="words &amp;&amp; words.length > 0">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>영어</th>
+              <th>한글</th>
+              <th>암기</th>
+              <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody ng-repeat="word in words">
+            <tr>
+              <td>{{word.en}}</td>
+              <td>{{word.ko}}</td>
+              <td>
+                <input type="checkbox" ng-model="word.memorized" ng-change="updateWord(word)"/> {{word.memorized}}
+              </td>
+              <td>
+                <button class="btn btn-danger" type="button" title="Delete"
+                        ng-click="deleteWord(word)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+</div>
