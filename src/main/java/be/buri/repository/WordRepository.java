@@ -1,8 +1,11 @@
 package be.buri.repository;
 
 import be.buri.model.Word;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface WordRepository extends JpaRepository<Word, Integer> {
+import java.util.List;
 
+public interface WordRepository extends MongoRepository<Word, String> {
+  public Word findByMemorized(boolean memorized);
+  public List<Word> findAllByMemorized(boolean memorized);
 }

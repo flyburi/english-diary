@@ -1,7 +1,40 @@
-<div class="container" ng-controller="HomeController">
+<div class="container" ng-controller="QuizController">
   <div class="page-header">
     <h1>Quiz</h1>
   </div>
 
-  <p>Quiz Time ###.............</p>
+
+  <div class="panel-body" ng-show="quizlist &amp;&amp; quizlist.length > 0">
+    <table>
+      <thead>
+      <!--
+      <tr>
+        <th>영어-한국어 퀴즈!</th>
+        </tr>
+      </thead>
+      -->
+      <tbody dir-paginate="quiz in quizlist | itemsPerPage: 1">
+        <tr>
+          <td>{{quiz.en}}</td>
+        </tr>
+        <tr>
+          <td><img src="http://lorempixel.com/500/400/"/></td>
+        </tr>
+        <tr>
+          <td><button class="btn btn-danger" type="button" title="show answer" ng-click="showAnswer = ! showAnswer">정답보기</button></td>
+        </tr>
+        <tr>
+          <td><div ng-show="showAnswer">{{quiz.ko}}</div></td>
+        </tr>
+      </tbody>
+
+    </table>
+
+    <div>
+      <dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+
+
+</div>
+
 </div>

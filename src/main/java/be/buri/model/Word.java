@@ -11,15 +11,13 @@ import javax.persistence.*;
  * Created by buri on 2015. 1. 25..
  */
 
-@Entity
 @Setter
 @Getter
 @ToString
 @EqualsAndHashCode(of = "id")
 public class Word {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
 
     @Column
     private String en;

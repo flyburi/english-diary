@@ -33,10 +33,6 @@
     angular.module("myApp.services").factory("Word", WordFactory);
 
 
-
-
-
-
     var QuizFactory = function($resource) {
         return $resource('/quiz/:id', {
             id: '@id'
@@ -52,8 +48,6 @@
 
     QuizFactory.$inject = ['$resource'];
     angular.module("myApp.services").factory("Quiz", QuizFactory);
-
-
 
     var HomeFactory = function($resource) {
         return $resource('/home/:id', {

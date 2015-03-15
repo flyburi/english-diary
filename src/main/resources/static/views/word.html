@@ -25,34 +25,33 @@
       <hr />
       <div class="panel panel-default">
         <div class="panel-heading">리스트</div>
-        <div class="alert" role="alert" ng-hide="words &amp;&amp; words.length > 0">
-          There are no words yet.
-        </div>
-        <div class="panel-body" ng-show="words &amp;&amp; words.length > 0">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>영어</th>
-              <th>한글</th>
-              <th>암기</th>
-              <th>삭제</th>
-            </tr>
-            </thead>
-            <tbody ng-repeat="word in words">
-            <tr>
-              <td>{{word.en}}</td>
-              <td>{{word.ko}}</td>
-              <td>
-                <input type="checkbox" ng-model="word.memorized" ng-change="updateWord(word)"/> {{word.memorized}}
-              </td>
-              <td>
-                <button class="btn btn-danger" type="button" title="Delete"
-                        ng-click="deleteWord(word)">
-                  <span class="glyphicon glyphicon-trash"></span>
-                </button>
-              </td>
-            </tr>
-
+          <div class="alert" role="alert" ng-hide="words &amp;&amp; words.length > 0">
+                  There are no words yet.
+          </div>
+          <div class="panel-body" ng-show="words &amp;&amp; words.length > 0">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>영어</th>
+                  <th>한글</th>
+                  <th>암기</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody ng-repeat="word in words ">
+                <tr>
+                  <td>{{word.en}}</td>
+                  <td>{{word.ko}}</td>
+                  <td>
+                    <input type="checkbox" ng-model="word.memorized" ng-change="updateWord(word)"/> {{word.memorized}}
+                  </td>
+                  <td>
+                    <button class="btn btn-danger" type="button" title="Delete"
+                    ng-click="deleteWord(word)">
+                      <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </td>
+                </tr>
             </tbody>
           </table>
         </div>
