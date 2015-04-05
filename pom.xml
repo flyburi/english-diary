@@ -73,6 +73,13 @@
             <artifactId>lombok</artifactId>
             <version>1.12.2</version>
         </dependency>
+        <!-- embeded tomcat exclude -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
 
