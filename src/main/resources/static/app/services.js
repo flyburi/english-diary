@@ -15,8 +15,7 @@
   ItemFactory.$inject = ['$resource'];
   angular.module("myApp.services").factory("Item", ItemFactory);
 
-
-    var WordFactory = function($resource) {
+  var WordFactory = function($resource) {
         return $resource('/words/:id', {
             id: '@id'
         }, {
@@ -27,42 +26,59 @@
                 method: "DELETE"
             }
         });
+	};
+
+	WordFactory.$inject = ['$resource'];
+	angular.module("myApp.services").factory("Word", WordFactory);
+
+	//
+	var WordGroupFactory = function($resource) {
+		return $resource('/wordGroups/:id', {
+			id: '@id'
+		}, {
+			update: {
+				method: "PUT"
+			},
+			remove: {
+				method: "DELETE"
+			}
+		});
+	};
+
+	WordGroupFactory.$inject = ['$resource'];
+	angular.module("myApp.services").factory("WordGroup", WordGroupFactory);
+	//
+
+	var QuizFactory = function($resource) {
+			return $resource('/quiz/:id', {
+					id: '@id'
+			}, {
+					update: {
+						method: "PUT"
+					},
+					remove: {
+							method: "DELETE"
+					}
+			});
     };
 
-    WordFactory.$inject = ['$resource'];
-    angular.module("myApp.services").factory("Word", WordFactory);
+	QuizFactory.$inject = ['$resource'];
+	angular.module("myApp.services").factory("Quiz", QuizFactory);
 
+	var HomeFactory = function($resource) {
+			return $resource('/home/:id', {
+					id: '@id'
+			}, {
+					update: {
+							method: "PUT"
+					},
+					remove: {
+							method: "DELETE"
+					}
+			});
+	};
 
-    var QuizFactory = function($resource) {
-        return $resource('/quiz/:id', {
-            id: '@id'
-        }, {
-            update: {
-                method: "PUT"
-            },
-            remove: {
-                method: "DELETE"
-            }
-        });
-    };
-
-    QuizFactory.$inject = ['$resource'];
-    angular.module("myApp.services").factory("Quiz", QuizFactory);
-
-    var HomeFactory = function($resource) {
-        return $resource('/home/:id', {
-            id: '@id'
-        }, {
-            update: {
-                method: "PUT"
-            },
-            remove: {
-                method: "DELETE"
-            }
-        });
-    };
-
-    HomeFactory.$inject = ['$resource'];
-    angular.module("myApp.services").factory("Home", HomeFactory);
+	HomeFactory.$inject = ['$resource'];
+	angular.module("myApp.services").factory("Home", HomeFactory);
 
 }(angular));

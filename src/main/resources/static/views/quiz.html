@@ -1,7 +1,11 @@
-<div class="container" ng-controller="QuizController">
-  <div class="page-header">
-    <h1>Quiz</h1>
-  </div>
+<section id="main-content" ng-controller="QuizController">
+  <section class="wrapper site-min-height">
+    <h3><i class="fa fa-angle-right"></i> Quiz </h3>
+
+<!--<div class="container" ng-controller="QuizController">-->
+  <!--<div class="page-header">-->
+    <!--<h1>Quiz</h1>-->
+  <!--</div>-->
 
 
   <div class="panel-body" ng-show="quizlist &amp;&amp; quizlist.length > 0">
@@ -18,14 +22,30 @@
           <td>{{quiz.en}}</td>
         </tr>
         <tr>
-          <td><img src="http://lorempixel.com/500/400/"/></td>
+          <td>
+            <div class="project-wrapper">
+              <div class="project">
+                <div class="photo-wrapper">
+                  <div class="photo">
+                    <div class="fancybox" fancybox ng-click="openFancybox('template.html')">
+                      <!--<img class="img-responsive" src="assets/img/portfolio/port06.jpg" alt="" >-->
+                      <img class="img-responsive" src="http://lorempixel.com/500/400/" alt="" >
+                    </div>
+                  </div>
+                  <div class="overlay"></div>
+                </div>
+              </div>
+            </div>
+          </td>
         </tr>
+        <!--
         <tr>
           <td><button class="btn btn-danger" type="button" title="show answer" ng-click="showAnswer = ! showAnswer">정답보기</button></td>
         </tr>
         <tr>
           <td><div ng-show="showAnswer">{{quiz.ko}}</div></td>
         </tr>
+        -->
       </tbody>
 
     </table>
@@ -34,7 +54,10 @@
       <dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
     </div>
 
-
 </div>
 
-</div>
+<!--</div>-->
+
+  </section><! --/wrapper -->
+</section><!-- /MAIN CONTENT -->
+

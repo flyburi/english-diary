@@ -1,0 +1,57 @@
+<section id="main-content" ng-controller="WordGroupController">
+  <section class="wrapper site-min-height">
+    <h3><i class="fa fa-angle-right"></i> 단어장 그룹</h3>
+
+    <form class="form-horizontal" role="form" ng-submit="addWordGroup(name,description)">
+      <div class="panel panel-info">
+        <div class="panel-heading">등록</div>
+        <div class="panel-body">
+          <div class="input-group">
+            <div class="col-xs-4">
+              <input type="text" class="form-control" ng-model="name" placeholder="Enter the Word Group name.." />
+            </div>
+            <div class="col-xs-8">
+              <input type="text" class="form-control" ng-model="description" placeholder="Enter the Word Group description..." />
+            </div>
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" ng-disabled="!addWordGroup" title="Add">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+              </span>
+          </div>
+        </div>
+      </div>
+      <hr />
+      <div class="panel panel-default">
+        <div class="panel-heading">리스트</div>
+          <div class="alert" role="alert" ng-hide="wordGroups &amp;&amp; wordGroups.length > 0">
+                  There are no word groups yet.
+          </div>
+          <div class="panel-body" ng-show="wordGroups &amp;&amp; wordGroups.length > 0">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>단어장 그룹 명</th>
+                  <th>단어장 그룹 설명</th>
+                  <th>삭제</th>
+                </tr>
+              </thead>
+              <tbody ng-repeat="wordGroup in wordGroups ">
+                <tr>
+                  <td>{{wordGroup.name}}</td>
+                  <td>{{wordGroup.description}}</td>
+                  <td>
+                    <button class="btn btn-danger btn-xs fa fa-trash-o" type="button" title="Delete"
+                    ng-click="deleteWordGroup(wordGroup)">
+                      <!--<span class="glyphicon glyphicon-trash"></span>-->
+                    </button>
+                  </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+
+  </section><! --/wrapper -->
+</section><!-- /MAIN CONTENT -->

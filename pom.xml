@@ -54,12 +54,14 @@
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+            <!--
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
                 </exclusion>
             </exclusions>
+            -->
 		</dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -79,7 +81,14 @@
             <artifactId>lombok</artifactId>
             <version>1.12.2</version>
         </dependency>
-
+        <!-- local 개발시엔 주석처리해야함.-->
+        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        -->
     </dependencies>
 
     <repositories>

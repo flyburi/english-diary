@@ -1,7 +1,6 @@
-<div class="container" ng-controller="WordController">
-    <div class="page-header">
-      <h1>단어장</h1>
-    </div>
+<section id="main-content" ng-controller="WordController">
+  <section class="wrapper site-min-height">
+    <h3><i class="fa fa-angle-right"></i> 단어장 </h3>
 
     <form class="form-horizontal" role="form" ng-submit="addWord(en,ko)">
       <div class="panel panel-info">
@@ -32,23 +31,23 @@
             <table class="table table-striped">
               <thead>
                 <tr>
+                  <th><i class=" fa fa-edit"></i> 암기</th>
                   <th>영어</th>
                   <th>한글</th>
-                  <th>암기</th>
                   <th>삭제</th>
                 </tr>
               </thead>
               <tbody ng-repeat="word in words ">
                 <tr>
+                  <td>
+                    <input type="checkbox" ng-model="word.memorized" ng-change="updateWord(word)"/>
+                  </td>
                   <td>{{word.en}}</td>
                   <td>{{word.ko}}</td>
                   <td>
-                    <input type="checkbox" ng-model="word.memorized" ng-change="updateWord(word)"/> {{word.memorized}}
-                  </td>
-                  <td>
-                    <button class="btn btn-danger" type="button" title="Delete"
+                    <button class="btn btn-danger btn-xs fa fa-trash-o" type="button" title="Delete"
                     ng-click="deleteWord(word)">
-                      <span class="glyphicon glyphicon-trash"></span>
+                      <!--<span class="glyphicon glyphicon-trash"></span>-->
                     </button>
                   </td>
                 </tr>
@@ -57,4 +56,6 @@
         </div>
       </div>
     </form>
-</div>
+
+  </section><! --/wrapper -->
+</section><!-- /MAIN CONTENT -->
