@@ -2,17 +2,27 @@
   <section class="wrapper site-min-height">
     <h3><i class="fa fa-angle-right"></i> 단어장 </h3>
 
-    <form class="form-horizontal" role="form" ng-submit="addWord(en,ko)">
+    <form class="form-horizontal" role="form" ng-submit="addWord(wordGroup, en,ko)">
       <div class="panel panel-info">
         <div class="panel-heading">등록</div>
         <div class="panel-body">
+          <!-- 단어장 그룹 선택-->
+          <div ng-controller="WordGroupController">
+            <label>단어장 그룹 선택 :</label>
+            <select ng-model="selectedGroup" ng-options="wordGroup.name for wordGroup in wordGroups" ng-change="handleClick(selectedGroup.id)">
+              <option value="">-- choose group --</option>
+            </select>
+          </div>
+
           <div class="input-group">
             <div class="col-xs-4">
+              <input type="hidden" ng-model="wordGroup" >
               <input type="text" class="form-control" ng-model="en" placeholder="Enter the English word..." />
             </div>
             <div class="col-xs-8">
               <input type="text" class="form-control" ng-model="ko" placeholder="Enter the Korean word..." />
             </div>
+
               <span class="input-group-btn">
                 <button class="btn btn-default" type="submit" ng-disabled="!addWord" title="Add">
                   <span class="glyphicon glyphicon-plus"></span>

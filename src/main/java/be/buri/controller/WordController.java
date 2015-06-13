@@ -1,6 +1,7 @@
 package be.buri.controller;
 
 import be.buri.model.Word;
+import be.buri.repository.WordGroupRepository;
 import be.buri.repository.WordRepository;
 import lombok.extern.apachecommons.CommonsLog;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ public class WordController {
 
     @Autowired
     private WordRepository repo;
+
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Word> findItems() {

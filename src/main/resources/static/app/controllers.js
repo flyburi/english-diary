@@ -1,5 +1,6 @@
 (function(angular) {
-  var AppController = function($scope, Item) {
+
+	var AppController = function($scope, Item) {
     Item.query(function(response) {
       $scope.items = response ? response : [];
     });
@@ -40,19 +41,25 @@
 	});
 
 
-  var WordController = function($scope, Word) {
+  var WordController = function($scope, Word, sharedService) {
 		Word.query(function(response) {
 			$scope.words = response ? response : [];
 		});
 
-    $scope.addWord = function(en, ko) {
+		$scope.$on('handleBroadcast', function() {
+			$scope.wordGroup = sharedService.wordGroup;
+		});
+
+		$scope.addWord = function(wordGroup, en, ko) {
         new Word({
+						wordGroupId: wordGroup,
             en: en,
             ko: ko,
             memorized : false
         }).$save(function(word) {
                 $scope.words.push(word);
         });
+				$scope.wordGroup = "";
         $scope.en = "";
         $scope.ko = "";
 
@@ -69,10 +76,8 @@
     };
 	};
 
-  WordController.$inject = ['$scope', 'Word'];
+  WordController.$inject = ['$scope', 'Word', 'WordAndWordGroupSharedService'];
   angular.module("myApp.controllers").controller("WordController", WordController);
-
-
 
 
 	var QuizController = function($scope, Quiz, element, attrs) {
@@ -109,10 +114,27 @@
 	};
 	angular.module("myApp").directive("fancybox", FancyDirective);
 
-	var WordGroupController = function($scope, WordGroup) {
+	var WordGroupController = function($scope, WordGroup, sharedService) {
 		WordGroup.query(function(response) {
 			$scope.wordGroups = response ? response : [];
 		});
+
+		//test
+		$scope.test = function(){
+			console.log("WordGroupController :test");
+		}
+		$scope.selectedGroup = "";
+
+
+		//
+		$scope.handleClick = function(msg) {
+			sharedService.prepForBroadcast(msg);
+		};
+
+		$scope.$on('handleBroadcast', function() {
+			$scope.wordGroup = sharedService.wordGroup;
+		});
+
 
 		$scope.addWordGroup = function(name, description) {
 			new WordGroup({
@@ -137,9 +159,8 @@
 		};
 	};
 
-	WordGroupController.$inject = ['$scope', 'WordGroup'];
+	WordGroupController.$inject = ['$scope', 'WordGroup', 'WordAndWordGroupSharedService'];
 	angular.module("myApp.controllers").controller("WordGroupController", WordGroupController);
-
 
 
 	var HomeController = function($scope, Word) {

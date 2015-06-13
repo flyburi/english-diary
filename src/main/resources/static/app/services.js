@@ -81,4 +81,24 @@
 	HomeFactory.$inject = ['$resource'];
 	angular.module("myApp.services").factory("Home", HomeFactory);
 
+
+	var WordAndWordGroupSharedFactory = function($rootScope){
+		var sharedService = {};
+
+		sharedService.wordGroup = '';
+
+		sharedService.prepForBroadcast = function(msg) {
+			this.wordGroup = msg;
+			this.broadcastItem();
+		};
+
+		sharedService.broadcastItem = function() {
+			$rootScope.$broadcast('handleBroadcast');
+		};
+
+		return sharedService;
+	};
+
+	angular.module("myApp.services").factory('WordAndWordGroupSharedService', WordAndWordGroupSharedFactory);
+
 }(angular));

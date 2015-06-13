@@ -28,4 +28,7 @@ public class Word {
     @Column
     private boolean memorized;
 
+    @Column
+    private String wordGroupId;
+
 }
