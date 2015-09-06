@@ -20,6 +20,6 @@
                 }).
                 otherwise({
                     redirectTo: '/'
-                });
-        }]);
+				});
+		}]);
 }(angular));

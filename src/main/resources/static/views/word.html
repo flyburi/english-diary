@@ -2,40 +2,70 @@
   <section class="wrapper site-min-height">
     <h3><i class="fa fa-angle-right"></i> 단어장 </h3>
 
+
     <form class="form-horizontal" role="form" ng-submit="addWord(wordGroup, en,ko)">
       <div class="panel panel-info">
         <div class="panel-heading">등록</div>
         <div class="panel-body">
           <!-- 단어장 그룹 선택-->
-          <div ng-controller="WordGroupController">
+          <div ng-controller="WordGroupController" class="col-xs-2">
             <select class="form-control" ng-model="selectedGroup" ng-options="wordGroup.name for wordGroup in wordGroups" ng-change="handleClick(selectedGroup.id)">
               <option value="">-- 단어장 그룹 선택 --</option>
             </select>
             <br>
           </div><!-- /WordGroupController -->
 
+          <!--
+          <script type="text/ng-template" id="myModalContent.html">
+            <div class="modal-header">
+              <h3 class="modal-title">I'm a modal!</h3>
+            </div>
+            <div class="modal-body">
+              <ul>
+                <li ng-repeat="item in items">
+                  <a ng-click="selected.item = item">{{ item }}</a>
+                </li>
+              </ul>
+              Selected: <b>{{ selected.item }}</b>
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" ng-click="ok()">OK</button>
+              <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+            </div>
+          </script>
+-->
           <div class="input-group">
             <input type="hidden" ng-model="wordGroup" >
             <div class="col-xs-4">
-              <input type="text" class="form-control" ng-model="en" placeholder="Enter the English word..." />
+              <input type="text" class="form-control" ng-model="en" placeholder="Enter the English word..." required=""/>
             </div>
             <div class="col-xs-8">
-              <input type="text" class="form-control" ng-model="ko" placeholder="Enter the Korean word..." />
+              <input type="text" class="form-control" ng-model="ko" placeholder="Enter the Korean word..." required=""/>
             </div>
 
               <span class="input-group-btn">
                 <button class="btn btn-default" type="submit" ng-disabled="!addWord" title="Add">
+                <!--<button class="btn btn-default" type="button" ng-click="addWord(wordGroup, en,ko)" ng-disabled="!addWord" title="Add">-->
                   <span class="glyphicon glyphicon-plus"></span>
                 </button>
               </span>
           </div>
         </div>
       </div>
+    </form>
       <hr />
 
       <div>
         <div class="content-panel">
-          <h4><i class="fa fa-angle-right"></i> 단어장 리스트 </h4><hr><table class="table table-striped table-advance table-hover">
+          <h4><i class="fa fa-angle-right"></i> 단어장 리스트</h4>
+          <hr>
+          <div class="btn pull-right">
+            <label class="col-sm-2 control-label">검색어</label>
+            <div class="col-sm-10">
+              <input ng-model="searchText" class="form-control round-form">
+            </div>
+          </div>
+          <table class="table table-striped table-advance table-hover">
           <div class="alert" role="alert" ng-hide="words &amp;&amp; words.length > 0">
             There are no words yet.
           </div>
@@ -47,31 +77,36 @@
                 <th><i class="fa fa-question-circle"></i> 단어장 그룹</th>
                 <th><i class="fa fa-bullhorn"></i> 영어</th>
                 <th class="hidden-phone"><i class="fa fa-bookmark"></i> 한글</th>
-                <th></th>
+                <th>삭제</th>
               </tr>
             </thead>
 
-            <tbody ng-repeat="word in words ">
+            <tbody dir-paginate="word in words | filter:searchText | itemsPerPage: 10">
               <tr>
                 <td>
                   <input type="checkbox" ng-model="word.memorized" ng-change="updateWord(word)"/>
                 </td>
-                <td>단어장 그룹...</td>
-                <td>{{word.en}}</td>
-                <td>{{word.ko}}</td>
+                <td>{{word.wordGroupName}}</td>
                 <td>
-                  <button class="btn btn-primary btn-xs fa fa-pencil"></button>
+                  <a href="#" editable-text="word.en" onaftersave="updateWord(word)">{{ word.en }}</a>
+                </td>
+                <td><a href="#" editable-text="word.ko" onaftersave="updateWord(word)">{{word.ko}}</a></td>
+
+                <td>
                   <button class="btn btn-danger btn-xs fa fa-trash-o" type="button" title="Delete" ng-click="deleteWord(word)">
-                    <!--<span class="glyphicon glyphicon-trash"></span>-->
                   </button>
                 </td>
               </tr>
             </tbody>
           </table>
+
+          <div class="centered">
+            <dir-pagination-controls template-url="bower_components/angular-utils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+          </div>
+
           </div>
         </div><!-- /content-panel -->
       </div>
-    </form>
 
   </section><! --/wrapper -->
 </section><!-- /MAIN CONTENT -->

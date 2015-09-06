@@ -2,21 +2,9 @@
   <section class="wrapper site-min-height">
     <h3><i class="fa fa-angle-right"></i> Quiz </h3>
 
-<!--<div class="container" ng-controller="QuizController">-->
-  <!--<div class="page-header">-->
-    <!--<h1>Quiz</h1>-->
-  <!--</div>-->
-
-
   <div class="panel-body" ng-show="quizlist &amp;&amp; quizlist.length > 0">
     <table>
       <thead>
-      <!--
-      <tr>
-        <th>영어-한국어 퀴즈!</th>
-        </tr>
-      </thead>
-      -->
       <tbody dir-paginate="quiz in quizlist | itemsPerPage: 1">
         <tr>
           <td>{{quiz.en}}</td>
@@ -38,14 +26,6 @@
             </div>
           </td>
         </tr>
-        <!--
-        <tr>
-          <td><button class="btn btn-danger" type="button" title="show answer" ng-click="showAnswer = ! showAnswer">정답보기</button></td>
-        </tr>
-        <tr>
-          <td><div ng-show="showAnswer">{{quiz.ko}}</div></td>
-        </tr>
-        -->
       </tbody>
 
     </table>

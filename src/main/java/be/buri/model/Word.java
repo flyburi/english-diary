@@ -31,4 +31,7 @@ public class Word {
     @Column
     private String wordGroupId;
 
+    @Transient
+    private String wordGroupName;
+
 }

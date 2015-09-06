@@ -41,10 +41,31 @@
 	});
 
 
-  var WordController = function($scope, Word, sharedService) {
+  var WordController = function($scope,  Word, sharedService, $modal, $log, $http) {
 		Word.query(function(response) {
 			$scope.words = response ? response : [];
 		});
+
+//		$scope.items = ['item1', 'item2', 'item3'];
+//		$scope.animationsEnabled = true;
+//		$scope.open = function () {
+//			var modalInstance = $modal.open({
+//				animation: $scope.animationsEnabled,
+//				templateUrl: 'myModalContent.html',
+//				controller: 'ModalInstanceCtrl',
+//				size: size,
+//				resolve: {
+//					items: function () {
+//						return $scope.items;
+//					}
+//				}
+//			});
+//			modalInstance.result.then(function (selectedItem) {
+//				$scope.selected = selectedItem;
+//			}, function () {
+//				$log.info('Modal dismissed at: ' + new Date());
+//			});
+//		};
 
 		$scope.$on('handleBroadcast', function() {
 			$scope.wordGroup = sharedService.wordGroup;
@@ -164,6 +185,42 @@
 
 
 	var HomeController = function($scope, Word) {
+		//test
+		$scope.user = {
+			name: 'awesome user'
+		};
+
+
+		$scope.users = [
+			{id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
+			{id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
+			{id: 3, name: 'awesome user3', status: 2, group: null}
+		];
+
+//
+
+		$scope.saveUser = function(data, id) {
+			//$scope.user not updated yet
+			angular.extend(data, {id: id});
+			return $http.post('/saveUser', data);
+		};
+
+		// remove user
+		$scope.removeUser = function(index) {
+			$scope.users.splice(index, 1);
+		};
+
+		// add user
+		$scope.addUser = function() {
+			$scope.inserted = {
+				id: $scope.users.length+1,
+				name: '',
+				status: null,
+				group: null
+			};
+			$scope.users.push($scope.inserted);
+		};
+
 	};
 	HomeController.$inject = ['$scope', 'Home'];
 	angular.module("myApp.controllers").controller("HomeController", HomeController);

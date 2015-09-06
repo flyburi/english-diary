@@ -8,4 +8,5 @@ import java.util.List;
 public interface WordRepository extends MongoRepository<Word, String> {
   public Word findByMemorized(boolean memorized);
   public List<Word> findAllByMemorized(boolean memorized);
+  public List<Word> findAllByWordGroupId(String wordGroupId);
 }
