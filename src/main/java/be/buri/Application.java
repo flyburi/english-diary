@@ -1,5 +1,8 @@
 package be.buri;
 
+/**
+ * Created by buri on 2015. 9. 13..
+ */
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
