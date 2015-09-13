@@ -18,6 +18,11 @@ public class UserController {
     return user;
   }
 
+//  @RequestMapping(value = "/user/login/facebook")
+//  public String loginFacebook(){
+//    return "facebook";
+//  }
+
   @RequestMapping("/resource")
   public Map<String, Object> home() {
     Map<String, Object> model = new HashMap<String, Object>();
