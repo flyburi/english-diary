@@ -11,7 +11,7 @@
       }
     });
   };
-  
+
   ItemFactory.$inject = ['$resource'];
   angular.module("myApp.services").factory("Item", ItemFactory);
 
@@ -80,6 +80,41 @@
 
 	HomeFactory.$inject = ['$resource'];
 	angular.module("myApp.services").factory("Home", HomeFactory);
+
+
+	var LoginFactory = function($resource) {
+		return $resource('/login/:id', {
+			id: '@id'
+		}, {
+			update: {
+				method: "PUT"
+			},
+			remove: {
+				method: "DELETE"
+			}
+		});
+	};
+
+	LoginFactory.$inject = ['$resource'];
+	angular.module("myApp.services").factory("Login", LoginFactory);
+
+
+	var SettingsFactory = function($resource) {
+		return $resource('/settings/:id', {
+			id: '@id'
+		}, {
+			update: {
+				method: "PUT"
+			},
+			remove: {
+				method: "DELETE"
+			}
+		});
+	};
+
+
+	SettingsFactory.$inject = ['$resource'];
+	angular.module("myApp.services").factory("Settings", SettingsFactory);
 
 
 	var WordAndWordGroupSharedFactory = function($rootScope){

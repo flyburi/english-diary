@@ -1,14 +1,11 @@
 <section id="main-content" ng-controller="QuizController">
   <section class="wrapper site-min-height">
-    <h3><i class="fa fa-angle-right"></i> Quiz </h3>
+    <h3><i class="fa fa-angle-right"></i> 퀴즈 </h3>
 
   <div class="panel-body" ng-show="quizlist &amp;&amp; quizlist.length > 0">
     <table>
       <thead>
       <tbody dir-paginate="quiz in quizlist | itemsPerPage: 1">
-        <tr>
-          <td>{{quiz.en}}</td>
-        </tr>
         <tr>
           <td>
             <div class="project-wrapper">
@@ -17,7 +14,10 @@
                   <div class="photo">
                     <div class="fancybox" fancybox ng-click="openFancybox('template.html')">
                       <!--<img class="img-responsive" src="assets/img/portfolio/port06.jpg" alt="" >-->
-                      <img class="img-responsive" src="http://lorempixel.com/500/400/" alt="" >
+                      <!--<img class="img-responsive" src="http://lorempixel.com/500/400/" alt="" >-->
+                      <div class="quiz-background">
+                        <p class="quiz-text">{{quiz.en}}</p>
+                      </div>
                     </div>
                   </div>
                   <div class="overlay"></div>

@@ -2242,5 +2242,23 @@ label {
     min-height: 900px;
 }
 
+.quiz-background {
+    background-image: url("http://lorempixel.com/500/400/");
+    width : 500px;
+    height: 400px;
+    background-position: center top;
+    /*padding: 70px 90px 120px 90px;*/
+}
+
+.quiz-text {
+    padding-top: 150px;
+    width : 500px;
+    height: 400px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba( 255, 255, 255, 0.5 );
+    color: #212121;
+}
 
 

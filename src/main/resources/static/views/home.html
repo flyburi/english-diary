@@ -2,5 +2,13 @@
 <section id="main-content" ng-controller="HomeController">
   <section class="wrapper site-min-height">
     <h3><i class="fa fa-angle-right"></i> Blank Page</h3>
+    <h1>Greeting</h1>
+    <div ng-show="authenticated">
+      <p>The ID is {{greeting.id}}</p>
+      <p>The content is {{greeting.content}}</p>
+    </div>
+    <div  ng-show="!authenticated">
+      <p>Login to see your greeting</p>
+    </div>
   </section><! --/wrapper -->
 </section><!-- /MAIN CONTENT -->

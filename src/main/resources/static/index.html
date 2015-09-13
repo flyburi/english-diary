@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">-->
     <!--<link rel="stylesheet" href="../css/custom.css" />-->
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -33,6 +33,9 @@
     <script type="text/javascript" src="./app/controllers.js"></script>
     <script type="text/javascript" src="./app/services.js"></script>
     <script type="text/javascript" src="./app/router.js"></script>
+    <!-- backstretch -->
+    <script type="text/javascript" src="assets/js/jquery.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-backstretch/2.0.4/jquery.backstretch.min.js"></script>
 
   </head>
 
@@ -50,7 +53,10 @@
 
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">Logout</a></li>
+          <li><a class="logout" href="/#/login" ng-show="!authenticated">Login</a></li>
+          <li ng-controller="LoginController">
+            <a class="logout" ng-click="logout()" ng-show="authenticated">Logout</a>
+          </li>
         </ul>
       </div>
     </header>
@@ -62,7 +68,8 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
 
-          <p class="centered"><a href="profile.html"><img src="assets/img/profile.jpg" class="img-circle" width="100" height="100"></a></p>
+          <!--<p class="centered"><a href="profile.html"><img src="assets/img/profile.jpg" class="img-circle" width="100" height="100"></a></p>-->
+          <p class="centered"><img src="assets/img/profile.jpg" class="img-circle" width="100" height="100"></p>
           <h5 class="centered">Dictionary</h5>
 
           <li class="mt">
@@ -93,7 +100,7 @@
             </a>
           </li>
 
-          <li class="sub-menu">
+          <li class="sub-menu" ng-show="authenticated">
             <a href="#settings" >
               <i class="fa fa-cogs"></i>
               <span>환경설정</span>
@@ -124,7 +131,6 @@
   <script type="text/javascript" class="include" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
   <script type="text/javascript" src="assets/js/jquery.scrollTo.min.js"></script>
   <script type="text/javascript" src="assets/js/jquery.nicescroll.js"></script>
-
 
 
   </body>

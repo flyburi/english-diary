@@ -4,7 +4,7 @@
     Item.query(function(response) {
       $scope.items = response ? response : [];
     });
-    
+
     $scope.addItem = function(description) {
       new Item({
         description: description,
@@ -14,11 +14,11 @@
       });
       $scope.newItem = "";
     };
-    
+
     $scope.updateItem = function(item) {
       item.$update();
     };
-    
+
     $scope.deleteItem = function(item) {
       item.$remove(function() {
         $scope.items.splice($scope.items.indexOf(item), 1);
@@ -27,7 +27,7 @@
   };
 
 
-  
+
   AppController.$inject = ['$scope', 'Item'];
   angular.module("myApp.controllers").controller("AppController", AppController);
 
@@ -106,7 +106,6 @@
 		Quiz.query(function(response) {
 			$scope.quizlist = response ? response : [];
 		});
-
 	};
 
 
@@ -140,12 +139,7 @@
 			$scope.wordGroups = response ? response : [];
 		});
 
-		//test
-		$scope.test = function(){
-			console.log("WordGroupController :test");
-		}
 		$scope.selectedGroup = "";
-
 
 		//
 		$scope.handleClick = function(msg) {
@@ -184,46 +178,162 @@
 	angular.module("myApp.controllers").controller("WordGroupController", WordGroupController);
 
 
-	var HomeController = function($scope, Word) {
-		//test
-		$scope.user = {
-			name: 'awesome user'
-		};
-
-
-		$scope.users = [
-			{id: 1, name: 'awesome user1', status: 2, group: 4, groupName: 'admin'},
-			{id: 2, name: 'awesome user2', status: undefined, group: 3, groupName: 'vip'},
-			{id: 3, name: 'awesome user3', status: 2, group: null}
-		];
-
+//	var LoginController = function($rootScope, $scope, $http, $location, $route) {
 //
+//		$scope.tab = function(route) {
+//			return $route.current && route === $route.current.controller;
+//		};
+//
+//		var authenticate = function(credentials, callback) {
+//
+//			var headers = credentials ? {
+//				authorization : "Basic "
+//					+ btoa(credentials.username + ":"
+//						+ credentials.password)
+//			} : {};
+//
+//			$http.get('user', {
+//				headers : headers
+//			}).success(function(data) {
+//				if (data.name) {
+//					$rootScope.authenticated = true;
+//				} else {
+//					$rootScope.authenticated = false;
+//				}
+//				callback && callback($rootScope.authenticated);
+//			}).error(function() {
+//				$rootScope.authenticated = false;
+//				callback && callback(false);
+//			});
+//
+//		}
+//
+//		authenticate();
+//
+//		$scope.credentials = {};
+//		$scope.login = function() {
+//			alert("login..");
+//			authenticate($scope.credentials, function(authenticated) {
+//				if (authenticated) {
+//					console.log("Login succeeded")
+//					$location.path("/");
+//					$scope.error = false;
+//					$rootScope.authenticated = true;
+//				} else {
+//					console.log("Login failed")
+//					$location.path("/login");
+//					$scope.error = true;
+//					$rootScope.authenticated = false;
+//				}
+//			})
+//		};
+//
+//		$scope.logout = function() {
+//			$http.post('logout', {}).success(function() {
+//				$rootScope.authenticated = false;
+//				$location.path("/");
+//			}).error(function(data) {
+//				console.log("Logout failed")
+//				$rootScope.authenticated = false;
+//			});
+//		}
+//
+//	};
 
-		$scope.saveUser = function(data, id) {
-			//$scope.user not updated yet
-			angular.extend(data, {id: id});
-			return $http.post('/saveUser', data);
-		};
+//	LoginController.$inject = ['$scope', 'Login'];
+//	angular.module("myApp.controllers").controller("LoginController", LoginController);
 
-		// remove user
-		$scope.removeUser = function(index) {
-			$scope.users.splice(index, 1);
-		};
+	angular.module("myApp.controllers").controller("LoginController",
+		function($rootScope, $scope, $http, $location, $route) {
 
-		// add user
-		$scope.addUser = function() {
-			$scope.inserted = {
-				id: $scope.users.length+1,
-				name: '',
-				status: null,
-				group: null
+			$scope.tab = function (route) {
+				return $route.current && route === $route.current.controller;
 			};
-			$scope.users.push($scope.inserted);
-		};
+
+			var authenticate = function (credentials, callback) {
+
+				var headers = credentials ? {
+					authorization: "Basic "
+						+ btoa(credentials.username + ":"
+							+ credentials.password)
+				} : {};
+
+				$http.get('user', {
+					headers: headers
+				}).success(function (data) {
+					if (data.name) {
+						$rootScope.authenticated = true;
+					} else {
+						$rootScope.authenticated = false;
+					}
+					callback && callback($rootScope.authenticated);
+				}).error(function () {
+					$rootScope.authenticated = false;
+					callback && callback(false);
+				});
+
+			}
+
+			authenticate();
+
+			$scope.credentials = {};
+			$scope.login = function () {
+				authenticate($scope.credentials, function (authenticated) {
+					if (authenticated) {
+						console.log("Login succeeded")
+						$location.path("/");
+						$scope.error = false;
+						$rootScope.authenticated = true;
+					} else {
+						console.log("Login failed")
+						$location.path("/login");
+						$scope.error = true;
+						$rootScope.authenticated = false;
+					}
+				})
+			};
+
+			$scope.logout = function () {
+				$http.post('logout', {}).success(function () {
+					$rootScope.authenticated = false;
+					$location.path("/");
+				}).error(function (data) {
+					console.log("Logout failed")
+					$rootScope.authenticated = false;
+				});
+			}
+			});
+
+
+
+	//ver2.
+	angular.module("myApp.controllers").controller("HomeController", function($scope, $http) {
+		$http.get('/resource/').success(function(data) {
+			$scope.greeting = data;
+		})
+	});
+
+	//ver1.
+//	var HomeController = function($scope, $http) {
+//		$http.get('/resource/').success(function (data) {
+//			$scope.greeting = data;
+//		})
+//	};
+//	HomeController.$inject = ['$scope', 'Home'];
+//	angular.module("myApp.controllers").controller("HomeController", HomeController);
+
+	//before
+//	var HomeController = function($scope, Settings) {
+//
+//	};
+//	HomeController.$inject = ['$scope', 'Home'];
+//	angular.module("myApp.controllers").controller("HomeController", HomeController);
+
+	var SettingsController = function($scope, Settings) {
 
 	};
-	HomeController.$inject = ['$scope', 'Home'];
-	angular.module("myApp.controllers").controller("HomeController", HomeController);
+	SettingsController.$inject = ['$scope', 'Settings'];
+	angular.module("myApp.controllers").controller("SettingsController", SettingsController);
 
 
 }(angular));
